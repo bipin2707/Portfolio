@@ -430,12 +430,20 @@
             </h1>
             <div id="contact-container">
 
+                <!-- <div id="contact-form-container">
+                    <form method="post" id="contact-form">
+                        <input id="input-name" name="Name" type="text" placeholder="Your Name">
+                        <input id="input-email" name="Email" type="text" required placeholder="Your Email">
+                        <textarea id="input-message" name="Message" rows="2" cols=40 placeholder="Message"></textarea>
+                        <button class="sub-btn" name="btn" type="submit">SEND MESSAGE</button>
+                    </form>
+                </div> -->
                 <div id="contact-form-container">
-                    <form id="contact-form">
-                        <input id="input-name" name="name" type="text" placeholder="Your Name">
-                        <input id="input-email" name="input-email" type="text" required placeholder="Your Email">
-                        <textarea id="input-message" name="input-message" rows="2" cols=40 placeholder="Message"></textarea>
-                        <button class="sub-btn" type="submit">SEND MESSAGE</button>
+                    <form method="post" id="contact-form">
+                        <input id="input-name" name="Name" type="text" placeholder="Your Name">
+                        <input id="input-email" name="Email" type="email" required placeholder="Your Email">
+                        <textarea id="input-message" name="Message" rows="4" cols="40" placeholder="Message"></textarea>
+                        <button class="sub-btn" name="btn" type="submit">SEND MESSAGE</button>
                     </form>
                 </div>
                 <div id="my-details-container">
@@ -485,5 +493,56 @@
      </main>
 
      <script src="script.js"></script>
+
+ <!-- <script>
+    let url = 'https://script.google.com/macros/s/AKfycbxZKB212NMuhNDj65Su94ZG9j4R9EMZOw-QE_lMhjxvbGhe1H_Z4vhWZJu_jKyrO6nOXw/exec';
+    let form = document.querySelector('#contact-form');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default action at the start
+
+        let formData = new FormData(form);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(res => res.text())
+        .then((finalRes) => {
+            console.log(finalRes);
+            alert("Message sent successfully!");
+            form.reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("There was an error sending your message. Please try again later.");
+        });
+    });
+</script>  -->
+<script>
+    const url = 'https://script.google.com/macros/s/AKfycbxZKB212NMuhNDj65Su94ZG9j4R9EMZOw-QE_lMhjxvbGhe1H_Z4vhWZJu_jKyrO6nOXw/exec';
+    const form = document.querySelector('#contact-form');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData,
+            });
+            const result = await response.text();
+            console.log(result);
+            alert("Message sent successfully!");
+            form.reset(); // Clear the form after successful submission
+        } catch (error) {
+            console.error('Error:', error);
+            alert("There was an error sending your message. Please try again later.");
+        }
+    });
+</script>
+
 </body>
 </html>
